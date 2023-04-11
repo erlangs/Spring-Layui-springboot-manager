@@ -20,30 +20,30 @@
             <input name="id" hidden/>
             <input name="pid" hidden/>
             <div class="layui-form-item">
-                <label class="layui-form-label">部门名称</label>
+                <label class="layui-form-label">单位名称</label>
                 <div class="layui-input-block">
                     <input type="name" name="name" placeholder="请输入组织机构名称" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
-                <div class="layui-form-label ">所属部门</div>
+                <div class="layui-form-label ">所属单位</div>
                 <div class="layui-input-block">
-                    <input type="pidName" name="pidName" placeholder="请选择所属部门" autocomplete="off" class="layui-input"
+                    <input type="pidName" name="pidName" placeholder="请选择所属单位" autocomplete="off" class="layui-input"
                            readonly="readonly" style="background:#eeeeee!important">
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label ">部门经理名称</label>
+                <label class="layui-form-label ">单位负责人名称</label>
                 <div class="layui-input-block">
-                    <input type="managerName" name="managerName" placeholder="请输入部门经理手机号" autocomplete="off"
+                    <input type="managerName" name="managerName" placeholder="请输入单位负责人手机号" autocomplete="off"
                            class="layui-input">
                 </div>
             </div>
 
             <div class="layui-form-item">
-                <div class="layui-form-label">部门经理手机号</div>
+                <div class="layui-form-label">单位负责人手机号</div>
                 <div class="layui-input-block">
-                    <input type="phone" name="phone" placeholder="请输入部门经理手机号" autocomplete="off" class="layui-input">
+                    <input type="phone" name="phone" placeholder="请输入单位负责人手机号" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -117,20 +117,20 @@
                 cols: [
                     [
                         {type: 'numbers'},
-                        {field: 'deptNo', title: '部门编码', width: 150},
-                        {field: 'name', title: '部门名称',},
+                        {field: 'deptNo', title: '单位编码', width: 250},
+                        {field: 'name', title: '单位名称',},
                         {
-                            field: 'pidName', title: '上级部门名称', templet: function (item) {
+                            field: 'pidName', title: '上级单位名称', templet: function (item) {
                                 if (item.pidName === null || item.pidName === undefined) {
-                                    return "最顶级部门";
+                                    return "最顶级单位";
                                 } else {
                                     return item.pidName;
                                 }
                             }
                         },
                         {field: 'relationCode', title: '层级关系编码'},
-                        {field: 'managerName', title: '部门经理'},
-                        {field: 'phone', title: '部门经理联系电话'},
+                        {field: 'managerName', title: '单位负责人'},
+                        {field: 'phone', title: '单位负责人联系电话'},
                         {
                             field: 'status', title: '状态', templet: function (item) {
                                 if (item.status === 1) {
@@ -159,7 +159,7 @@
                     selectNode = null;
                     $(".dept-table").hide();
                     $(".operation_dept").show();
-                    $(".title").html("编辑部门");
+                    $(".title").html("编辑单位");
                     $(".operation_dept input[name=id]").val(data.id);
                     $(".operation_dept input[name=pid]").val(data.pid);
                     $(".operation_dept input[name=name]").val(data.name);
@@ -188,7 +188,7 @@
                     selectNode = null;
                     $(".dept-table").hide();
                     $(".operation_dept").show();
-                    $(".title").html("新增部门");
+                    $(".title").html("新增单位");
                     $(".operation_dept input[name=id]").val("");
                     $(".operation_dept input[name=pid]").val("");
                     $(".operation_dept input[name=name]").val("");
@@ -235,7 +235,7 @@
             layer.open({
                 type: 1,
                 skin: 'layui-layer-molv',
-                title: "选择部门",
+                title: "选择单位",
                 area: ['400px', '450px'],
                 shade: 0,
                 shadeClose: false,
