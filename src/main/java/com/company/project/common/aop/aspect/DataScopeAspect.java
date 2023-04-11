@@ -77,6 +77,9 @@ public class DataScopeAspect {
         if (params instanceof BaseEntity) {
             BaseEntity baseEntity = (BaseEntity) params;
             baseEntity.setCreateIds(userIds);
+//            Mark By Kerry
+//            int a = 9;
+//            a = a + 1;
         }
 
     }

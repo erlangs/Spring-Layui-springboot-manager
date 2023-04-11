@@ -127,7 +127,7 @@ public class DeptServiceImpl extends ServiceImpl<SysDeptMapper, SysDept> impleme
         }
         // 默认加一个顶级方便新增顶级部门
         DeptRespNodeVO respNodeVO = new DeptRespNodeVO();
-        respNodeVO.setTitle("默认顶级部门");
+        respNodeVO.setTitle("根对象");
         respNodeVO.setId("0");
         respNodeVO.setSpread(true);
         respNodeVO.setDisabled(disabled);

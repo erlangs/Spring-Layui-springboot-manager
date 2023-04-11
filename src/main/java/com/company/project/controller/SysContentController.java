@@ -7,7 +7,12 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.company.project.common.aop.annotation.DataScope;
 import com.company.project.common.utils.DataResult;
 import com.company.project.entity.SysContentEntity;
+import com.company.project.entity.SysDept;
+import com.company.project.entity.SysUser;
+import com.company.project.service.DeptService;
+import com.company.project.service.HttpSessionService;
 import com.company.project.service.SysContentService;
+import com.company.project.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -31,14 +36,26 @@ import java.util.List;
 @RestController
 @RequestMapping("/sysContent")
 public class SysContentController {
+
+    @Resource
+    HttpSessionService sessionService;
+
     @Resource
     private SysContentService sysContentService;
 
+    @Resource
+    DeptService deptService;
+    @Resource
+    UserService userService;
 
     @ApiOperation(value = "新增")
     @PostMapping("/add")
     @RequiresPermissions("sysContent:add")
-    public DataResult add(@RequestBody SysContentEntity sysContent) {
+    public DataResult add(@RequestBody SysContentEntity sysContent) {//获取当前登陆人
+        String userId = sessionService.getCurrentUserId();        //本人
+        SysUser sysUser = userService.getById(userId);        //本部门
+        SysDept sysDept = deptService.getById(sysUser.getDeptId());
+        sysContent.setCreateId(userId);
         sysContentService.save(sysContent);
         return DataResult.success();
     }
